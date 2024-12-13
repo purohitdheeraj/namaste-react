@@ -36,3 +36,13 @@ The `crossorigin` attribute is used to handle Cross-Origin Resource Sharing (COR
 - (empty string): This is the same as `anonymous`.
 
 Using the `crossorigin` attribute ensures that the script is fetched with the appropriate CORS policy.
+
+
+- Redux
+ 
+ - Install @reduxjs/toolkit and react-redux
+ - Build our own store 
+ - connect out store to app
+ - create a slice (cartSlice)
+ - dispatch action
+ - Read data using selector
