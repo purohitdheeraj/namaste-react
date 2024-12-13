@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// props can be passed as an object to the createElement function
-// props can be default props or custom props
+// javascript syntax extension
+// jsx is html like syntax in javascript not html
+// more of XML
+
+// React Element
+function App(){
+  return <>
+    <h1>Hello World</h1>
+  </>
+}
 
 
-// here hare krishna is also a prop
-const element = React.createElement('h1', {id: 'heading'}, "hare krisha hare rama");
+// const element = React.createElement('div', {className: 'container'}, 'Hello World');
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const parent = React.createElement('div',{id: 'parent'}, React.createElement('div',{id: 'child'}, [React.createElement('h1',{id: 'heading'}, 'i am h1 tag'),React.createElement('h2',{id: 'parent'}, 'hare krishna')]) )
-
-console.log(parent)
-
-const root  = ReactDOM.createRoot(document.getElementById('root'));
-root.render(parent);
+root.render(<App/>);
