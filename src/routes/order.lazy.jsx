@@ -1,21 +1,24 @@
 import { useState, useEffect, useContext } from "react";
-import Pizza from "./Pizza";
-import Cart from "./Cart";
-import { CartContext } from "./contexts";
+import { createLazyFileRoute } from "@tanstack/react-router";
+import Pizza from "../Pizza";
+import Cart from "../Cart";
+import { CartContext } from "../contexts";
 
-// feel free to change en-US / USD to your locale
+export const Route = createLazyFileRoute("/order")({
+  component: Order,
+});
+
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
 
-export default function Order() {
+function Order() {
   const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M");
   const [pizzaTypes, setPizzaTypes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useContext(CartContext); 
-
+  const [cart, setCart] = useContext(CartContext);
 
   async function checkout() {
     setLoading(true);
@@ -33,7 +36,6 @@ export default function Order() {
     setCart([]);
     setLoading(false);
   }
-
 
   let price, selectedPizza;
   if (!loading) {
@@ -58,13 +60,10 @@ export default function Order() {
     <div className="order">
       <h2>Create Order</h2>
       <form
-         onSubmit={(e) => {
-            e.preventDefault();
-            setCart([
-              ...cart,
-              { pizza: selectedPizza, size: pizzaSize, price },
-            ]);
-          }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
+        }}
       >
         <div>
           <div>
