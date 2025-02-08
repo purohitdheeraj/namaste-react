@@ -1,6 +1,8 @@
-import { render } from "@testing-library/react";
-import { expect, test } from "vitest";
+import { render, cleanup } from "@testing-library/react";
+import { expect, test, afterEach } from "vitest";
 import Pizza from "../Pizza";
+
+afterEach(cleanup)
 
 test("alt text renders on image", async () => {
   const name = "My Favorite Pizza";
@@ -13,4 +15,16 @@ test("alt text renders on image", async () => {
   expect(img.src).toBe(src)
   expect(img.alt).toBe(name);
 
+})
+
+test("to render default image if not provided", () => {
+  const name = "My Favorite Pizza";
+  // const src = "https://picsum.photos/200";
+  const screen = render(
+    <Pizza name={name} description="super cool pizza"  />
+  )
+
+  const img = screen.getByRole("img")
+
+  expect(img.src).not.toBe("")
 })
